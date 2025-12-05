@@ -17,17 +17,28 @@ function CharacterCounter({
   });
 
   const calculateStats = (inputText: string): TextStats => {
+    // Handle empty input
+    if (!inputText || inputText.trim() === "") {
+      return {
+        characterCount: 0,
+        wordCount: 0,
+        readingTime: 0,
+      };
+    }
+
     const characterCount = inputText.length;
 
     // Count words (split by whitespace and filter empty strings)
+    // Handle special characters and multiple spaces properly
     const words = inputText
       .trim()
       .split(/\s+/)
       .filter((word) => word.length > 0);
-    const wordCount = inputText.trim() === "" ? 0 : words.length;
+    const wordCount = words.length;
 
     // Calculate reading time (average reading speed: 200 words per minute)
-    const readingTime = Math.ceil(wordCount / 200);
+    // Always show at least 1 minute if there are words
+    const readingTime = wordCount > 0 ? Math.max(1, Math.ceil(wordCount / 200)) : 0;
 
     return {
       characterCount,
@@ -37,8 +48,14 @@ function CharacterCounter({
   };
 
   const handleTextChange = (newText: string) => {
-    setText(newText);
-    const newStats = calculateStats(newText);
+    // Handle very long text by limiting to reasonable size
+    const maxAllowedLength = 50000; // 50k characters max
+    const textToProcess = newText.length > maxAllowedLength 
+      ? newText.substring(0, maxAllowedLength) 
+      : newText;
+    
+    setText(textToProcess);
+    const newStats = calculateStats(textToProcess);
     setStats(newStats);
   };
 
