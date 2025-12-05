@@ -12,12 +12,12 @@ function TextInput({
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = e.target.value;
-    
+
     // Respect maxLength if provided
     if (maxLength && newText.length > maxLength) {
       return;
     }
-    
+
     setText(newText);
     onTextChange(newText);
   };
