@@ -2,6 +2,7 @@ import { useState } from "react";
 import TextInput from "./TextInput";
 import StatsDisplay from "./StatsDisplay";
 import type { CharacterCounterProps, TextStats } from "../types";
+import "./CharacterCounter.css";
 
 function CharacterCounter({
   minWords,
