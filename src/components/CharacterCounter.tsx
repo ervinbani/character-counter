@@ -74,6 +74,15 @@ function CharacterCounter({
 
   const validationMessage = getValidationMessage();
 
+  const handleClear = () => {
+    setText("");
+    setStats({
+      characterCount: 0,
+      wordCount: 0,
+      readingTime: 0,
+    });
+  };
+
   return (
     <div className="character-counter">
       <h1>Character Counter</h1>
@@ -82,6 +91,7 @@ function CharacterCounter({
         onTextChange={handleTextChange}
         placeholder="Start typing..."
         initialValue={text}
+        onClear={handleClear}
       />
 
       <StatsDisplay
