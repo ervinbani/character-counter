@@ -2,6 +2,8 @@ export interface TextInputProps {
   onTextChange: (text: string) => void;
   placeholder?: string;
   initialValue?: string;
+  maxLength?: number;
+  onClear?: () => void;
 }
 
 export interface TextStats {
