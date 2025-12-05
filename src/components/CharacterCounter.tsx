@@ -67,7 +67,12 @@ function CharacterCounter({
         initialValue={text}
       />
 
-      <StatsDisplay stats={stats} showReadingTime={true} />
+      <StatsDisplay
+        stats={stats}
+        showReadingTime={true}
+        minWords={minWords}
+        maxWords={maxWords}
+      />
 
       {validationMessage && (
         <div className="validation-message">{validationMessage}</div>
